@@ -51,10 +51,10 @@ function checkAnswer() {
     document.getElementById("score").innerText = "🧮: " + score;
     document.getElementById("visual3").innerHTML = `= ${correctAnswer} <br> Счет: ${score}`;
     renderSquares(num1 + num2, "visual3");
-    showModal("https://res.cloudinary.com/dk0qm0a6j/image/upload/v1719256567/win2_oh5kqr.gif"); // замените на ссылку на изображение для правильного ответа
+    showModal("images/win.gif"); // замените на ссылку на изображение для правильного ответа
     setTimeout(generateProblem, 2000);
   } else {
-    showModal("https://res.cloudinary.com/dk0qm0a6j/image/upload/v1719256719/3F30_q5jmlq.gif"); // замените на ссылку на изображение для неправильного ответа
+    showModal("images/lose.gif"); // замените на ссылку на изображение для неправильного ответа
   }
 }
 
