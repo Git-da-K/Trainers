@@ -44,12 +44,12 @@ function checkAnswer() {
 
   if (answer === correctAnswer) {
     renderSquares(num1 - num2, "visual3");
-    showModal("https://res.cloudinary.com/dk0qm0a6j/image/upload/v1719256567/win2_oh5kqr.gif"); // замените на ссылку на изображение для правильного ответа
+    showModal("images/win.gif"); // замените на ссылку на изображение для правильного ответа
     score++;
     document.getElementById("score").innerText = "🧮: " + score;
     setTimeout(generateProblem, 3000);
   } else {
-    showModal("https://res.cloudinary.com/dk0qm0a6j/image/upload/v1719256719/3F30_q5jmlq.gif"); // замените на ссылку на изображение для неправильного ответа
+    showModal("images/lose.gif"); // замените на ссылку на изображение для неправильного ответа
   }
 }
 
