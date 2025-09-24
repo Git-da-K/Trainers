@@ -50,7 +50,7 @@ document.addEventListener('DOMContentLoaded', function() {
   function endGame() {
     gameStarted = false;
     clearInterval(countdown);
-    winningGifContainer.querySelector('#winningGif').src = '/images/win2.gif';
+    winningGifContainer.querySelector('#winningGif').src = 'images/win2.gif';
     winningGifContainer.querySelector('#winningText').textContent = currentLanguage === 'EN' ? `You typed ${correctCount} words!` : `Вы набрали ${correctCount} слов!`;
     winningGifContainer.classList.remove('hidden');
     winningGifContainer.style.display = 'block';
