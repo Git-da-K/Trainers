@@ -9,7 +9,7 @@ body {
 }
 
 #backgroundContainer {
-  background-image: url('https://i.ibb.co/rx9xsGx/Frame-1720768593.png');
+  background-image: url('/images/');
   background-size: cover;
   background-position: center;
   height: 100vh;
