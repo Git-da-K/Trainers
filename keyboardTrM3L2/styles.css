@@ -9,7 +9,7 @@ body {
 }
 
 #backgroundContainer {
-  background-image: url('/images/');
+  background-image: url('/images/fonmain.png');
   background-size: cover;
   background-position: center;
   height: 100vh;
