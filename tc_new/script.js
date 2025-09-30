@@ -158,3 +158,14 @@ function startGame() {
 
 // применяем переводы при загрузке
 setTexts();
+
+function closeApp() {
+  // 🔹 Вариант 1: полностью скрыть приложение
+  document.body.innerHTML = "<h2 style='text-align:center; margin-top:40px;'>🚀</h2>";
+
+  // 🔹 Вариант 2 (альтернатива): закрыть только модалку и скрыть весь контент
+  // document.getElementById("result-modal").classList.remove("active");
+  // document.querySelector("h1").style.display = "none";
+  // document.querySelector(".game").style.display = "none";
+  // document.querySelector(".input-area").style.display = "none";
+}
