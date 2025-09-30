@@ -196,3 +196,18 @@ button:hover {
     width: 80%;
   }
 }
+
+.btn-group {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  margin-top: 15px;
+}
+
+#next-btn {
+  background: #28a745; /* зелёная кнопка */
+}
+
+#next-btn:hover {
+  background: #218838;
+}
