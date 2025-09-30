@@ -1,5 +1,85 @@
 let correctAnswer = 0;
 
+// Словарь переводов
+const translations = {
+  ru: {
+    title: "Emoji Math Game",
+    startText: "Реши пример, чтобы узнать, сколько стикеров нужно для ракеты 🚀",
+    startBtn: "Старт",
+    checkBtn: "Проверить",
+    restartBtn: "Рестарт",
+    correct: (n) => `Вот сколько стикеров нужно наклеить на ракету 🚀: ${n}`,
+    tryAgain: "Попробуй ещё раз 😉"
+  },
+  pl: {
+    title: "Gra matematyczna z emotikonami",
+    startText: "Rozwiąż zadanie, aby dowiedzieć się, ile naklejek potrzeba na rakietę 🚀",
+    startBtn: "Start",
+    checkBtn: "Sprawdź",
+    restartBtn: "Restart",
+    correct: (n) => `Tyle naklejek trzeba przykleić na rakietę 🚀: ${n}`,
+    tryAgain: "Spróbuj ponownie 😉"
+  },
+  en: {
+    title: "Emoji Math Game",
+    startText: "Solve the example to find out how many stickers are needed for the rocket 🚀",
+    startBtn: "Start",
+    checkBtn: "Check",
+    restartBtn: "Restart",
+    correct: (n) => `This is how many stickers to put on the rocket 🚀: ${n}`,
+    tryAgain: "Try again 😉"
+  },
+  pt: { // Португальский (Бразилия)
+    title: "Jogo de Matemática com Emojis",
+    startText: "Resolva o exercício para descobrir quantos adesivos são necessários para o foguete 🚀",
+    startBtn: "Iniciar",
+    checkBtn: "Verificar",
+    restartBtn: "Reiniciar",
+    correct: (n) => `Aqui está a quantidade de adesivos para colar no foguete 🚀: ${n}`,
+    tryAgain: "Tente novamente 😉"
+  },
+  tr: { // Турецкий
+    title: "Emoji Matematik Oyunu",
+    startText: "Roket için kaç çıkartma gerektiğini öğrenmek için örneği çöz 🚀",
+    startBtn: "Başla",
+    checkBtn: "Kontrol Et",
+    restartBtn: "Yeniden Başlat",
+    correct: (n) => `Rokete yapıştırman gereken çıkartma sayısı 🚀: ${n}`,
+    tryAgain: "Tekrar dene 😉"
+  },
+  es: { // Испанский
+    title: "Juego de Matemáticas con Emojis",
+    startText: "Resuelve el ejercicio para saber cuántas pegatinas necesita el cohete 🚀",
+    startBtn: "Comenzar",
+    checkBtn: "Comprobar",
+    restartBtn: "Reiniciar",
+    correct: (n) => `Estas son las pegatinas que debes poner en el cohete 🚀: ${n}`,
+    tryAgain: "Inténtalo de nuevo 😉"
+  },
+  it: { // Итальянский
+    title: "Gioco di Matematica con Emoji",
+    startText: "Risolvi l'esercizio per scoprire quanti adesivi servono per il razzo 🚀",
+    startBtn: "Avvia",
+    checkBtn: "Verifica",
+    restartBtn: "Ricomincia",
+    correct: (n) => `Ecco quanti adesivi devi mettere sul razzo 🚀: ${n}`,
+    tryAgain: "Riprova 😉"
+  }
+};
+
+// Определяем язык
+const userLang = navigator.language.slice(0,2); // например "ru", "pl", "en", "pt", "tr", "es", "it"
+const lang = translations[userLang] ? userLang : "en";
+
+// Применяем переводы на страницу
+function setTexts() {
+  document.getElementById("game-title").textContent = translations[lang].title;
+  document.getElementById("start-text").textContent = translations[lang].startText;
+  document.getElementById("start-btn").textContent = translations[lang].startBtn;
+  document.getElementById("check-btn").textContent = translations[lang].checkBtn;
+  document.getElementById("restart-btn").textContent = translations[lang].restartBtn;
+}
+
 const emojis = ["🍎","🍌","🍒","🍇","🍉","🍓","🥕","🌸","⭐","⚽"];
 
 function randomEmoji() {
@@ -29,7 +109,7 @@ function generateGame() {
       ? leftCount + rightCount
       : leftCount - rightCount;
 
-  } while (result < 2 || result > 6);  // теперь только 2–6
+  } while (result < 2 || result > 6);  // результат только 2–6
 
   correctAnswer = result;
 
@@ -58,10 +138,10 @@ function checkAnswer() {
 
   if (value === correctAnswer) {
     document.getElementById("modal-text").textContent =
-      `Вот сколько стикеров нужно наклеить на ракету 🚀: ${correctAnswer}`;
+      translations[lang].correct(correctAnswer);
     document.getElementById("result-modal").classList.add("active");
   } else {
-    alert("Попробуй ещё раз 😉");
+    alert(translations[lang].tryAgain);
   }
 }
 
@@ -75,3 +155,6 @@ function startGame() {
   document.getElementById("start-screen").classList.remove("active");
   generateGame();
 }
+
+// применяем переводы при загрузке
+setTexts();
