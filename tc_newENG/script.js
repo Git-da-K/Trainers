@@ -22,14 +22,14 @@ const translations = {
   },
   en: {
     title: "Emoji Math Game",
-    startText: "Solve the example to find out how many stickers are needed for the rocket 🚀",
+    startText: "Solve the problem to find out how many stickers are needed for the rocket 🚀",
     startBtn: "Start",
     checkBtn: "Check",
     restartBtn: "Restart",
     correct: (n) => `This is how many stickers to put on the rocket 🚀: ${n}`,
     tryAgain: "Try again 😉"
   },
-  pt: { // Португальский (Бразилия)
+  pt: {
     title: "Jogo de Matemática com Emojis",
     startText: "Resolva o exercício para descobrir quantos adesivos são necessários para o foguete 🚀",
     startBtn: "Iniciar",
@@ -38,7 +38,7 @@ const translations = {
     correct: (n) => `Aqui está a quantidade de adesivos para colar no foguete 🚀: ${n}`,
     tryAgain: "Tente novamente 😉"
   },
-  tr: { // Турецкий
+  tr: {
     title: "Emoji Matematik Oyunu",
     startText: "Roket için kaç çıkartma gerektiğini öğrenmek için örneği çöz 🚀",
     startBtn: "Başla",
@@ -47,7 +47,7 @@ const translations = {
     correct: (n) => `Rokete yapıştırman gereken çıkartma sayısı 🚀: ${n}`,
     tryAgain: "Tekrar dene 😉"
   },
-  es: { // Испанский
+  es: {
     title: "Juego de Matemáticas con Emojis",
     startText: "Resuelve el ejercicio para saber cuántas pegatinas necesita el cohete 🚀",
     startBtn: "Comenzar",
@@ -56,7 +56,7 @@ const translations = {
     correct: (n) => `Estas son las pegatinas que debes poner en el cohete 🚀: ${n}`,
     tryAgain: "Inténtalo de nuevo 😉"
   },
-  it: { // Итальянский
+  it: {
     title: "Gioco di Matematica con Emoji",
     startText: "Risolvi l'esercizio per scoprire quanti adesivi servono per il razzo 🚀",
     startBtn: "Avvia",
@@ -67,17 +67,25 @@ const translations = {
   }
 };
 
-// Определяем язык
-const userLang = navigator.language.slice(0,2); // например "ru", "pl", "en", "pt", "tr", "es", "it"
-const lang = translations[userLang] ? userLang : "en";
+// Определяем язык: берём системный (первые 2 буквы) или EN по умолчанию
+const systemLang = navigator.language.slice(0, 2).toLowerCase();
+const lang = translations.hasOwnProperty(systemLang) ? systemLang : "en";
 
-// Применяем переводы на страницу
+// Применяем переводы
 function setTexts() {
-  document.getElementById("game-title").textContent = translations[lang].title;
-  document.getElementById("start-text").textContent = translations[lang].startText;
-  document.getElementById("start-btn").textContent = translations[lang].startBtn;
-  document.getElementById("check-btn").textContent = translations[lang].checkBtn;
-  document.getElementById("restart-btn").textContent = translations[lang].restartBtn;
+  const t = translations[lang];
+
+  const title = document.getElementById("game-title");
+  const startText = document.getElementById("start-text");
+  const startBtn = document.getElementById("start-btn");
+  const checkBtn = document.getElementById("check-btn");
+  const restartBtn = document.getElementById("restart-btn");
+
+  if (title) title.textContent = t.title;
+  if (startText) startText.textContent = t.startText;
+  if (startBtn) startBtn.textContent = t.startBtn;
+  if (checkBtn) checkBtn.textContent = t.checkBtn;
+  if (restartBtn) restartBtn.textContent = t.restartBtn;
 }
 
 const emojis = ["🍎","🍌","🍒","🍇","🍉","🍓","🥕","🌸","⭐","⚽"];
@@ -104,16 +112,11 @@ function generateGame() {
     leftCount = generateNumber(1, 5);
     rightCount = generateNumber(1, 5);
     operator = Math.random() < 0.5 ? "+" : "-";
-
-    result = operator === "+"
-      ? leftCount + rightCount
-      : leftCount - rightCount;
-
-  } while (result < 2 || result > 6);  // результат только 2–6
+    result = operator === "+" ? leftCount + rightCount : leftCount - rightCount;
+  } while (result < 2 || result > 6);
 
   correctAnswer = result;
 
-  // Эмодзи слева
   for (let i = 0; i < leftCount; i++) {
     const span = document.createElement("span");
     span.className = "emoji";
@@ -121,7 +124,6 @@ function generateGame() {
     leftCard.appendChild(span);
   }
 
-  // Эмодзи справа
   for (let i = 0; i < rightCount; i++) {
     const span = document.createElement("span");
     span.className = "emoji";
@@ -135,13 +137,13 @@ function generateGame() {
 function checkAnswer() {
   const input = document.getElementById("answer");
   const value = Number(input.value);
+  const t = translations[lang];
 
   if (value === correctAnswer) {
-    document.getElementById("modal-text").textContent =
-      translations[lang].correct(correctAnswer);
+    document.getElementById("modal-text").textContent = t.correct(correctAnswer);
     document.getElementById("result-modal").classList.add("active");
   } else {
-    alert(translations[lang].tryAgain);
+    alert(t.tryAgain);
   }
 }
 
@@ -156,16 +158,9 @@ function startGame() {
   generateGame();
 }
 
-// применяем переводы при загрузке
+// Применяем переводы при загрузке страницы
 setTexts();
 
 function closeApp() {
-  // 🔹 Вариант 1: полностью скрыть приложение
   document.body.innerHTML = "<h2 style='text-align:center; margin-top:40px;'>🚀</h2>";
-
-  // 🔹 Вариант 2 (альтернатива): закрыть только модалку и скрыть весь контент
-  // document.getElementById("result-modal").classList.remove("active");
-  // document.querySelector("h1").style.display = "none";
-  // document.querySelector(".game").style.display = "none";
-  // document.querySelector(".input-area").style.display = "none";
 }
