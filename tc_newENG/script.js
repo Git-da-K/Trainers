@@ -1,80 +1,18 @@
 let correctAnswer = 0;
 
-// Словарь переводов
-const translations = {
-  ru: {
-    title: "Emoji Math Game",
-    startText: "Реши пример, чтобы узнать, сколько стикеров нужно для ракеты 🚀",
-    startBtn: "Старт",
-    checkBtn: "Проверить",
-    restartBtn: "Рестарт",
-    correct: (n) => `Вот сколько стикеров нужно наклеить на ракету 🚀: ${n}`,
-    tryAgain: "Попробуй ещё раз 😉"
-  },
-  pl: {
-    title: "Gra matematyczna z emotikonami",
-    startText: "Rozwiąż zadanie, aby dowiedzieć się, ile naklejek potrzeba na rakietę 🚀",
-    startBtn: "Start",
-    checkBtn: "Sprawdź",
-    restartBtn: "Restart",
-    correct: (n) => `Tyle naklejek trzeba przykleić na rakietę 🚀: ${n}`,
-    tryAgain: "Spróbuj ponownie 😉"
-  },
-  en: {
-    title: "Emoji Math Game",
-    startText: "Solve the problem to find out how many stickers are needed for the rocket 🚀",
-    startBtn: "Start",
-    checkBtn: "Check",
-    restartBtn: "Restart",
-    correct: (n) => `This is how many stickers to put on the rocket 🚀: ${n}`,
-    tryAgain: "Try again 😉"
-  },
-  pt: {
-    title: "Jogo de Matemática com Emojis",
-    startText: "Resolva o exercício para descobrir quantos adesivos são necessários para o foguete 🚀",
-    startBtn: "Iniciar",
-    checkBtn: "Verificar",
-    restartBtn: "Reiniciar",
-    correct: (n) => `Aqui está a quantidade de adesivos para colar no foguete 🚀: ${n}`,
-    tryAgain: "Tente novamente 😉"
-  },
-  tr: {
-    title: "Emoji Matematik Oyunu",
-    startText: "Roket için kaç çıkartma gerektiğini öğrenmek için örneği çöz 🚀",
-    startBtn: "Başla",
-    checkBtn: "Kontrol Et",
-    restartBtn: "Yeniden Başlat",
-    correct: (n) => `Rokete yapıştırman gereken çıkartma sayısı 🚀: ${n}`,
-    tryAgain: "Tekrar dene 😉"
-  },
-  es: {
-    title: "Juego de Matemáticas con Emojis",
-    startText: "Resuelve el ejercicio para saber cuántas pegatinas necesita el cohete 🚀",
-    startBtn: "Comenzar",
-    checkBtn: "Comprobar",
-    restartBtn: "Reiniciar",
-    correct: (n) => `Estas son las pegatinas que debes poner en el cohete 🚀: ${n}`,
-    tryAgain: "Inténtalo de nuevo 😉"
-  },
-  it: {
-    title: "Gioco di Matematica con Emoji",
-    startText: "Risolvi l'esercizio per scoprire quanti adesivi servono per il razzo 🚀",
-    startBtn: "Avvia",
-    checkBtn: "Verifica",
-    restartBtn: "Ricomincia",
-    correct: (n) => `Ecco quanti adesivi devi mettere sul razzo 🚀: ${n}`,
-    tryAgain: "Riprova 😉"
-  }
+// Тексты на английском
+const t = {
+  title: "Emoji Math Game",
+  startText: "Solve the problem to find out how many stickers are needed for the rocket 🚀",
+  startBtn: "Start",
+  checkBtn: "Check",
+  restartBtn: "Restart",
+  correct: (n) => `This is how many stickers to put on the rocket 🚀: ${n}`,
+  tryAgain: "Try again 😉"
 };
 
-// Определяем язык: берём системный (первые 2 буквы) или EN по умолчанию
-const systemLang = navigator.language.slice(0, 2).toLowerCase();
-const lang = translations.hasOwnProperty(systemLang) ? systemLang : "en";
-
-// Применяем переводы
+// Устанавливаем тексты
 function setTexts() {
-  const t = translations[lang];
-
   const title = document.getElementById("game-title");
   const startText = document.getElementById("start-text");
   const startBtn = document.getElementById("start-btn");
@@ -137,7 +75,6 @@ function generateGame() {
 function checkAnswer() {
   const input = document.getElementById("answer");
   const value = Number(input.value);
-  const t = translations[lang];
 
   if (value === correctAnswer) {
     document.getElementById("modal-text").textContent = t.correct(correctAnswer);
@@ -158,7 +95,6 @@ function startGame() {
   generateGame();
 }
 
-// Применяем переводы при загрузке страницы
 setTexts();
 
 function closeApp() {
