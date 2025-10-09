@@ -78,7 +78,7 @@ function createGrid() {
       if (x === heroPosition.x && y === heroPosition.y) {
         cell.classList.add('hero');
         const heroImage = document.createElement('img');
-        heroImage.src = 'https://767416.selcdn.ru/production_kodland_main_public/task_description_materials/d806b48f-c50e-4bf5-b3df-003bf64ea6b0.png'; // Ссылка на изображение героя
+        heroImage.src = 'robot.png'; // Ссылка на изображение героя
         cell.appendChild(heroImage);
       }
 
