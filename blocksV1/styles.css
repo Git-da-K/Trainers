@@ -198,16 +198,18 @@ body {
 .cell.hero {
   background: none;
   position: relative;
+  overflow: visible; /* важно, чтобы ничего не обрезалось */
 }
 
 .cell.hero img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain; /* теперь изображение полностью помещается */
   position: absolute;
   top: 0;
   left: 0;
   z-index: 2;
+  pointer-events: none; /* чтобы не мешало кликам */
 }
 
 .cell.crystal {
