@@ -3,12 +3,12 @@ let correctAnswer = 0;
 // Тексты на английском
 const t = {
   title: "Jogo de Matemática com Emojis",
-  startText: "Solve the problem to find out how many stickers are needed for the rocket 🚀",
-  startBtn: "Start",
-  checkBtn: "Check",
-  restartBtn: "Restart",
-  correct: (n) => `This is how many stickers to put on the rocket 🚀: ${n}`,
-  tryAgain: "Try again 😉"
+  startText: "Resolva o problema para descobrir quantos adesivos você precisa para o foguete 🚀",
+  startBtn: "Iniciar",
+  checkBtn: "Verificar",
+  restartBtn: "Reiniciar",
+  correct: (n) => `Essa é a quantidade de adesivos para colocar no foguete 🚀: ${n}`,
+  tryAgain: "Tente novamente 😉"
 };
 
 // Устанавливаем тексты
