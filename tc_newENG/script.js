@@ -2,7 +2,7 @@ let correctAnswer = 0;
 
 // Тексты на английском
 const t = {
-  title: "Emoji Math Game",
+  title: "Jogo de Matemática com Emojis",
   startText: "Solve the problem to find out how many stickers are needed for the rocket 🚀",
   startBtn: "Start",
   checkBtn: "Check",
